@@ -1,7 +1,5 @@
 package com.ebay.pages;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -9,22 +7,18 @@ import org.openqa.selenium.support.ui.Wait;
 import org.testng.asserts.SoftAssert;
 import utils.ConfigManager;
 import utils.SoftAssertManager;
-import utils.Utils;
-import utils.VisualTestUtil;
 
 import java.time.Duration;
 
 public class BasePage {
 
     protected WebDriver driver;
-    protected static VisualTestUtil visualTestUtil;
 
 
 
 
     public BasePage(WebDriver driver){
         this.driver=driver;
-        visualTestUtil = new VisualTestUtil(driver);
     }
 
     protected void clickElement(By element){
