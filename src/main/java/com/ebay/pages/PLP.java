@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,31 +22,19 @@ public class PLP extends BasePage{
     }
 
     public int countResults(){
-        Set<String> seen = new HashSet<>();
-        //Here i am not using driver.findElements().size(), because when i run cicd some of the elements are not displayed! so i want to capture only the displayed ones
-        for (WebElement el :driver.findElements(resultTitle) ){
-            if(!el.isDisplayed() || !seen.add(el.getText().trim().toLowerCase()))continue;
-        }
-        return seen.size();
+        return driver.findElements(resultTitle).size();
     }
 
     @Step("Validating search results")
     public boolean validateResults(String searchKey){
-        Set<String> seen = new HashSet<>();
-        String normalizedKey = searchKey.toLowerCase().replaceAll("[^a-z0-9 ]", " ").replaceAll("\\s+", " ").trim();
+        String[] keywords = searchKey.toLowerCase().replaceAll("[^a-z0-9 ]", " ").trim().split("\\s+");
+
 
         for(WebElement el : driver.findElements(resultTitle)){
-            //i am skipping not displayed ones
-            if (!el.isDisplayed())continue;
             String text = el.getText().toLowerCase().trim();
-
-            if(!seen.add(text))continue;
-
-            String normalizedText = text.replaceAll("[^a-z0-9 ]", " ").replaceAll("\\s+", " ").trim();
-
-
+            boolean matchesAny = Arrays.stream(keywords).anyMatch(text::contains);
             log.info(el.getText());
-            if(!normalizedText.contains(normalizedKey)){
+            if(!matchesAny){
                 log.warn("Result does not match search key: '{}'", text);
                 return false;
             }
