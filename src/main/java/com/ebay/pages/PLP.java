@@ -44,6 +44,7 @@ public class PLP extends BasePage{
             String normalizedText = text.replaceAll("[^a-z0-9 ]", " ").replaceAll("\\s+", " ").trim();
 
 
+            log.info(el.getText());
             if(!normalizedText.contains(normalizedKey)){
                 log.warn("Result does not match search key: '{}'", text);
                 return false;
