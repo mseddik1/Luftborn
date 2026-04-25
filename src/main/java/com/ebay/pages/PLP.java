@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class PLP extends BasePage{
     private static final Logger log = LoggerFactory.getLogger(PLP.class);
     private final By resultTitle = By.xpath("//span[@class='su-styled-text primary default' and not(contains(text(),'Shop on eBay'))]");
@@ -18,23 +21,31 @@ public class PLP extends BasePage{
     }
 
     public int countResults(){
+        Set<String> seen = new HashSet<>();
         //Here i am not using driver.findElements().size(), because when i run cicd some of the elements are not displayed! so i want to capture only the displayed ones
-        int count=0;
         for (WebElement el :driver.findElements(resultTitle) ){
-            if(el.isDisplayed())count++;
+            if(!el.isDisplayed() || !seen.add(el.getText().trim().toLowerCase()))continue;
         }
-        return count;
+        return seen.size();
     }
 
     @Step("Validating search results")
     public boolean validateResults(String searchKey){
+        Set<String> seen = new HashSet<>();
+        String normalizedKey = searchKey.toLowerCase().replaceAll("[^a-z0-9 ]", " ").replaceAll("\\s+", " ").trim();
 
         for(WebElement el : driver.findElements(resultTitle)){
             //i am skipping not displayed ones
             if (!el.isDisplayed())continue;
-            log.info(el.getText().toLowerCase());
-            if(!el.getText().toLowerCase().contains(searchKey.toLowerCase())){
-                log.info(el.getText().toLowerCase());
+            String text = el.getText().toLowerCase().trim();
+
+            if(!seen.add(text))continue;
+
+            String normalizedText = text.replaceAll("[^a-z0-9 ]", " ").replaceAll("\\s+", " ").trim();
+
+
+            if(!normalizedText.contains(normalizedKey)){
+                log.warn("Result does not match search key: '{}'", text);
                 return false;
             }
         }
