@@ -32,6 +32,7 @@ public class PLP extends BasePage{
         for(WebElement el : driver.findElements(resultTitle)){
             //i am skipping not displayed ones
             if (!el.isDisplayed())continue;
+            log.info(el.getText().toLowerCase());
             if(!el.getText().toLowerCase().contains(searchKey.toLowerCase())){
                 log.info(el.getText().toLowerCase());
                 return false;
