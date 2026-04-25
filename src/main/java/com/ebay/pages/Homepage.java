@@ -1,5 +1,6 @@
 package com.ebay.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,15 +13,16 @@ public class Homepage extends BasePage{
         super(driver);
     }
 
-
+    @Step("Verify whether user is on the  homepage")
     public boolean isHomepage(){
         return driver.findElement(ebayLogo).isDisplayed();
     }
 
-
-    public void searchForProduct(String product){
-        typeElement(searchBar,product);
+    @Step("Search for: {searchKey} in search bar")
+    public PLP searchForProduct(String searchKey){
+        typeElement(searchBar,searchKey);
         clickElement(searchButton);
+        return new PLP(driver);
     }
 
 }
