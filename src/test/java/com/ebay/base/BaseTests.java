@@ -162,6 +162,8 @@ public class BaseTests {
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--window-size=1920,1080");
+            options.addArguments("--force-device-scale-factor=1");
+
         }
         options.setExperimentalOption("prefs", prefs);
 
