@@ -33,7 +33,7 @@ public class PLP extends BasePage{
         for(WebElement el : driver.findElements(resultTitle)){
             String text = el.getText().toLowerCase().trim();
             boolean matchesAny = Arrays.stream(keywords).anyMatch(text::contains);
-            log.info(el.getText());
+//            log.info(el.getText());
             if(!matchesAny){
                 log.warn("Result does not match search key: '{}'", text);
                 return false;
