@@ -18,13 +18,20 @@ public class PLP extends BasePage{
     }
 
     public int countResults(){
-        return driver.findElements(resultTitle).size();
+        //Here i am not using driver.findElements().size(), because when i run cicd some of the elements are not displayed! so i want to capture only the displayed ones
+        int count=0;
+        for (WebElement el :driver.findElements(resultTitle) ){
+            if(el.isDisplayed())count++;
+        }
+        return count;
     }
 
     @Step("Validating search results")
     public boolean validateResults(String searchKey){
 
         for(WebElement el : driver.findElements(resultTitle)){
+            //i am skipping not displayed ones
+            if (!el.isDisplayed())continue;
             if(!el.getText().toLowerCase().contains(searchKey.toLowerCase())){
                 log.info(el.getText().toLowerCase());
                 return false;
