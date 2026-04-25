@@ -3,7 +3,7 @@ package apis.api;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import utils.ConfigManager;
+import utils.SecretManager;
 
 import java.util.Map;
 
@@ -15,7 +15,7 @@ public class ApiClient {
 
     public ApiClient(String baseUrl) {
         this.baseUrl = baseUrl;
-        this.apiKey = ConfigManager.getApiKey();
+        this.apiKey = SecretManager.get("REQRES_API_KEY");
 
     }
 

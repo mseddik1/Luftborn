@@ -1,7 +1,6 @@
 package com.ebay.base;
 
 import com.ebay.pages.Homepage;
-import com.fasterxml.jackson.databind.JsonNode;
 import listeners.MyListeners;
 import listeners.TestListeners;
 import org.openqa.selenium.OutputType;
@@ -24,7 +23,6 @@ import org.testng.asserts.SoftAssert;
 import utils.ConfigManager;
 import utils.DriverManager;
 import utils.SoftAssertManager;
-import utils.Utils;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -67,7 +65,7 @@ public class BaseTests {
         SoftAssertManager.reset();
 
 
-        log.info("Initiating {} | Thread: {}", m.getName(), Thread.currentThread().getId());
+        log.info("Initiating {} | Thread: {}", m.getName(), Thread.currentThread().threadId());
 
 
         WebDriver rawDriver= switch (browser.toLowerCase()) {
@@ -103,7 +101,7 @@ public class BaseTests {
 
 
 
-                long tid = Thread.currentThread().getId();
+                long tid = Thread.currentThread().threadId();
                 String ts = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS"));
                 String fileName = ts + "_T" + tid + "_" + result.getName() + ".png";
 
@@ -125,9 +123,9 @@ public class BaseTests {
             try {
 
 
-//                if (driver != null) {
-//                    driver.quit();
-//                }
+                if (driver != null) {
+                    driver.quit();
+                }
 
 
             } catch (Exception e) {

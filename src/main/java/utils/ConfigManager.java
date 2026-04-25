@@ -20,18 +20,7 @@ public class ConfigManager {
     }
 
 
-    public static String getApiKey() {
-        String sysKey = System.getenv("REQRES_API_KEY");
-        String configKey = ConfigManager.get("REQRES_API_KEY");
 
-
-        if (sysKey != null && !sysKey.isBlank()) return sysKey;
-        else if (configKey != null && !configKey.isBlank()) return configKey;
-        else throw new IllegalStateException(
-                "API key is not set. Provide REQRES_API_KEY as env variable or API_KEY in config."
-            );
-
-    }
 
 
 
