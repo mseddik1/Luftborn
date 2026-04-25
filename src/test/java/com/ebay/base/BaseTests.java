@@ -1,5 +1,6 @@
 package com.ebay.base;
 
+import com.ebay.pages.Homepage;
 import com.fasterxml.jackson.databind.JsonNode;
 import listeners.MyListeners;
 import listeners.TestListeners;
@@ -42,12 +43,12 @@ import java.util.Map;
 public class BaseTests {
 
     private static final Logger log = LoggerFactory.getLogger(BaseTests.class);
-    protected static final JsonNode testDataFile = Utils.readAsJsonResource("testData/comTestData.json");
 
 
     private String browser;
     private String env;
 
+    protected Homepage homepage;
 
 
     @BeforeClass(alwaysRun = true )
@@ -85,6 +86,7 @@ public class BaseTests {
 
         goToHomePage();
 
+        homepage = new Homepage(DriverManager.getDriver());
     }
 
 
@@ -123,9 +125,9 @@ public class BaseTests {
             try {
 
 
-                if (driver != null) {
-                    driver.quit();
-                }
+//                if (driver != null) {
+//                    driver.quit();
+//                }
 
 
             } catch (Exception e) {
