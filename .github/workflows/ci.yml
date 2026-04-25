@@ -34,7 +34,9 @@ jobs:
       - name: Run TestNG suite
         env:
           CI: true
+          REQRES_API_KEY: ${{ secrets.REQRES_API_KEY }}
         run: mvn test -DsuiteXmlFile=src/test/suites/smoke/Master_Smoke.xml
+
 
       - name: Upload Surefire reports
         if: always()

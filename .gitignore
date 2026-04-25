@@ -31,8 +31,8 @@ build/
 ### Mac OS ###
 .DS_Store
 
-### properties ###
-**/config.properties
+### secrets ###
+**/secrets.properties
 
 
 ## Logs ##
