@@ -1,0 +1,11 @@
+
+.git
+.github
+target
+node_modules
+*.log
+.idea
+.DS_Store
+allure-results/
+allure-report/
+**/config.properties

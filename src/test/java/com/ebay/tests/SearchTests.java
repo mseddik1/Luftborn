@@ -4,15 +4,21 @@ package com.ebay.tests;
 import com.ebay.base.BaseTests;
 import com.ebay.pages.PLP;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import utils.AllureUtils;
+import utils.RetryAnalyzer;
 
 public class SearchTests extends BaseTests {
     private static final Logger log = LoggerFactory.getLogger(SearchTests.class);
 
-    @Test
+    @Test(groups = {"smoke"},retryAnalyzer = RetryAnalyzer.class,description = "User should be able to apply filters")
+    @Story("Search")
+    @Severity(SeverityLevel.CRITICAL)
     public void searchFilterTest(){
         String searchKey = "mazda mx-5";
         String filterGroup = "Transmission";

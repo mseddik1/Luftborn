@@ -11,8 +11,7 @@
         </groups>
 
         <classes>
-<!--            <class name="com.sauceDemo.tests.LoginTests" />-->
-<!--            <class name="com.sauceDemo.tests.CheckoutTests" />-->
+            <class name="com.ebay.tests.SearchTests" />
         </classes>
     </test>
 </suite>
