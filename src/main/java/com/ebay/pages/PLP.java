@@ -44,12 +44,17 @@ public class PLP extends BasePage{
     public PLP filterBy(String filterGroup, String filterValue){
         String groupXpath=String.format("//div[text()='%s']",filterGroup);
         String valueXpath = String.format("//span[text()='%s']",filterValue);
+        String filterAppliedXpath = valueXpath + "//ancestor::div[@class='x-refine__multi-select']//span[text()='Filter Applied']";
 
         //Here i am implicitly checking that both values are present and them performing my action
         myWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(groupXpath)));
         myWait().until(ExpectedConditions.elementToBeClickable(By.xpath(valueXpath)));
 
         clickElement(By.xpath(valueXpath));
+
+        boolean isPresent = !driver.findElements(By.xpath(filterAppliedXpath)).isEmpty();
+        softly().assertTrue(isPresent, "Filter element should be present in the DOM");
+
 
         return this;
     }
