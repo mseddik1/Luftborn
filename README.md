@@ -276,7 +276,7 @@ using bash:
 ```bash
 export REQRES_API_KEY=your_api_key_here
 source ~/.bashrc
-```
+``` 
 using zsh: 
 ```zsh
 echo 'export REQRES_API_KEY=your_api_key_here' >> ~/.zshrc
