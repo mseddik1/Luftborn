@@ -1,6 +1,7 @@
 package com.ebay.base;
 
 import com.ebay.pages.Homepage;
+import com.fasterxml.jackson.databind.JsonNode;
 import listeners.MyListeners;
 import listeners.TestListeners;
 import org.openqa.selenium.OutputType;
@@ -23,6 +24,7 @@ import org.testng.asserts.SoftAssert;
 import utils.ConfigManager;
 import utils.DriverManager;
 import utils.SoftAssertManager;
+import utils.Utils;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -40,6 +42,7 @@ import java.util.Map;
 @Listeners(TestListeners.class)
 public class BaseTests {
 
+    protected static final JsonNode testDataFile = Utils.readAsJsonResource("testData/comTestData.json");
     private static final Logger log = LoggerFactory.getLogger(BaseTests.class);
 
 

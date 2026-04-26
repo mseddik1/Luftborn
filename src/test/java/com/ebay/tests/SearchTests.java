@@ -3,6 +3,7 @@ package com.ebay.tests;
 
 import com.ebay.base.BaseTests;
 import com.ebay.pages.PLP;
+import com.fasterxml.jackson.databind.JsonNode;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -15,14 +16,16 @@ import utils.RetryAnalyzer;
 
 public class SearchTests extends BaseTests {
     private static final Logger log = LoggerFactory.getLogger(SearchTests.class);
+    private final JsonNode searchNode = testDataFile.path("search");
 
     @Test(groups = {"smoke"},retryAnalyzer = RetryAnalyzer.class,description = "User should be able to apply filters")
     @Story("Search")
     @Severity(SeverityLevel.CRITICAL)
     public void searchFilterTest(){
-        String searchKey = "mazda mx-5";
-        String filterGroup = "Transmission";
-        String filterValue = "Manual";
+        JsonNode validSearch = searchNode.path("validSearch");
+        String searchKey = validSearch.get("searchKey").asText();
+        String filterGroup = validSearch.get("filterGroup").asText();
+        String filterValue = validSearch.get("filterValue").asText();
         softly().assertTrue(homepage.isHomepage());
 
         PLP plp = homepage.searchForProduct(searchKey);
