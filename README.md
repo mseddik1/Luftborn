@@ -268,7 +268,7 @@ Validations:
 
 This project requires a REQRES_API_KEY to run tests successfully. Get it from [here](https://app.reqres.in/playground).
 >  Never commit your API key to version control. The `secrets.properties` file is already added to `.gitignore`.
-
+ 
 You can configure it using one of the following methods:
 ## Option 1: Set as Environment Variable 
 ### macOS / Linux
