@@ -319,7 +319,7 @@ mvn test -DsuiteXmlFile=src/test/suites/smoke/Smoke_Suite_COM.xml
 ### Run Master Suite
 
 ```bash
-mvn test -DsuiteXmlFile=src/test/suites/smoke/Master_Suite.xml
+mvn test -DsuiteXmlFile=src/test/suites/smoke/Master_Smoke.xml
 ```
 
 ---
