@@ -250,7 +250,7 @@ Validations:
 Endpoint:
 
 ```
-POST /user
+POST /users
 ```
 
 Validations:
