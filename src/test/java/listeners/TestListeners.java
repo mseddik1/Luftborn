@@ -9,7 +9,6 @@ import org.testng.ITestResult;
 public class TestListeners implements ITestListener, ISuiteListener {
 
     private static final Logger log = LoggerFactory.getLogger(TestListeners.class);
-    private static boolean fileAppenderInitialized = false;
 
     @Override
     public void onTestStart(ITestResult result) {
