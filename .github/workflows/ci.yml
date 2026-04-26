@@ -60,6 +60,15 @@ jobs:
           path: test-output/screenshots/
           if-no-files-found: ignore
 
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: test-output/logs/
+          if-no-files-found: ignore
+
       - name: Install Allure CLI
         if: always()
         run: |
