@@ -289,9 +289,9 @@ source ~/.zshrc
 $env:REQRES_API_KEY="your_api_key_here"
 ```
 ## Option 2: Use secret.properties File
-1. Locate the file `secret-example.properties` in the `/src/test/resources/secret`
-2. Copy it and rename the copy to: `secret.properties` and paste it in the same place
-3. Open `secret.properties` and set your API key: `REQRES_API_KEY=your_api_key_here`
+1. Locate the file `secrets-example.properties` in the `/src/test/resources/secret`
+2. Copy it and rename the copy to: `secrets.properties` and paste it in the same place
+3. Open `secrets.properties` and set your API key: `REQRES_API_KEY=your_api_key_here`
 
 ---
 
