@@ -66,7 +66,7 @@ public class UsersTests extends BaseTests {
     @Test(
             groups = {"smoke", "regression"},
             retryAnalyzer = RetryAnalyzer.class,
-            description = "User should be create user"
+            description = "User should be able to create user"
     )
     @Story("Create User")
     @Severity(SeverityLevel.CRITICAL)
