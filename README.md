@@ -38,6 +38,7 @@ This project demonstrates the implementation of a **production-ready automation 
 - [Reporting](#reporting)
 - [Advanced Features](#advanced-features)
 - [Design Decisions](#design-decisions)
+- [Known Limitations](#known-limitations)
 - [Conclusion](#conclusion)
 
 ---
@@ -418,6 +419,18 @@ Ensures consistent execution environments across machines and CI pipelines.
 Allows automatic test execution and prevents unstable code from being merged into the main branch.
 
 ---
+## Known Limitations
+
+### eBay Bot Detection / Browser Verification
+
+This framework automates a live external website (`https://www.ebay.com`).  
+During execution, eBay may apply bot-detection, browser verification, regional routing, or temporary fallback pages depending on the execution environment, IP address, or browser session.
+
+When this occurs, the browser may be redirected to an eBay verification or fallback page before the actual homepage/search results are loaded. This behavior is external to the framework and may cause UI tests to fail intermittently.
+
+The framework includes explicit waits, retry handling, screenshots on failure, and reporting to help identify and debug such cases.
+
+In a real production setup, this would typically be handled through a controlled test environment, test-specific allowlisting, or coordination with the application/infrastructure team.
 
 # Conclusion
 
