@@ -28,7 +28,7 @@ public class UsersTests extends BaseTests {
     )
     @Story("Get Users Paginated")
     @Severity(SeverityLevel.CRITICAL)
-    public void getPostsPaginated(){
+    public void getUsersPaginated(){
         int page = 2;
         Response response = userService.getAllUsers(page);
 
